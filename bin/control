@@ -1,5 +1,29 @@
 #!/bin/sh
 
 start(){
-return 0;
+/etc/init.d/haproxy start;
+}
+
+stop(){
+/etc/init.d/haproxy stop;
+}
+
+restart(){
+/etc/init.d/haproxy restart;
+}
+
+reload(){
+/etc/init.d/haproxy reload;
+}
+
+condrestart(){
+/etc/init.d/haproxy condrestart;
+}
+
+status(){
+/etc/init.d/haproxy status;
+}
+
+check(){
+/etc/init.d/haproxy check;
 }
