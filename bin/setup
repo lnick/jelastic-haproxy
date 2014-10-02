@@ -1,1 +1,4 @@
 #!/bin/bash -e
+
+useradd --system haproxy
+mkdir -p /etc/haproxy
