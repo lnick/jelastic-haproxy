@@ -1,4 +1,4 @@
 #!/bin/bash -e
 
-
+yum -y localinstall ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/glibc-2.20.90-6.fc22.i686.rpm
 
