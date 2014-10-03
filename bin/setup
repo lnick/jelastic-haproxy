@@ -1,10 +1,4 @@
 #!/bin/bash -e
 
-useradd --system haproxy
-mkdir -p /etc/haproxy
-touch /etc/haproxy/haproxy.cfg
-cp ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/haproxy /usr/sbin/haproxy
-cp ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/haproxy-systemd-wrapper /usr/sbin/haproxy-systemd-wrapper
-cp ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/haproxy.init /etc/init.d/haproxy
-chmod 755 /etc/init.d/haproxy
+
 
