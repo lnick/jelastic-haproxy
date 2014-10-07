@@ -32,7 +32,7 @@ if [ -L $0 ]; then
   BASENAME=`basename $BASENAME`
 fi
 
-[ -f /etc/$BASENAME/$BASENAME.cfg ] || exit 1
+[ -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/$BASENAME.cfg ] || exit 1
 
 RETVAL=0
 
