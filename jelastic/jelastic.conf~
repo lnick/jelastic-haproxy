@@ -1,6 +1,0 @@
-Node_Mission=bl
-Native_Requirements=gcc
-App_User=jelastic
-Admin_App_User=
-Node_Type=haproxy
-Engine_Type=java
