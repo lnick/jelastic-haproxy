@@ -1,1 +1,2 @@
 #!/bin/bash -e
+setcap 'cap_net_bind_service=+ep' /opt/repo/versions/1.5.3/bin/haproxy
