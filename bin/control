@@ -26,7 +26,7 @@ fi
 [ ${NETWORKING} = "no" ] && exit 0
 
 # This is our service name
-BASENAME=`basename $0`
+BASENAME="haproxy"
 if [ -L $0 ]; then
   BASENAME=`find $0 -name $BASENAME -printf %l`
   BASENAME=`basename $BASENAME`
@@ -37,7 +37,6 @@ fi
 RETVAL=0
 
 start() {
-  return 0;
   ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -c -q -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf
   if [ $? -ne 0 ]; then
     echo "Errors found in configuration file, check it with '$BASENAME check'."
