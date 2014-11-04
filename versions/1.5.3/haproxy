@@ -77,20 +77,14 @@ reload() {
     echo "Errors found in configuration file, check it with '$BASENAME check'."
     return 1
   fi
-  ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf -p /var/run/$BASENAME.pid -sf $(cat /var/run/$BASENAME.pid)
+  ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf 
 }
 
 check() {
   ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -c -q -V -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf
 }
 
-status() {
-  status $BASENAME
-}
 
-condrestart() {
-  [ -e /var/lock/subsys/$BASENAME ] && restart || :
-}
 
 # See how we were called.
 case "$1" in
@@ -106,17 +100,11 @@ case "$1" in
   reload)
     reload
     ;;
-  condrestart)
-    condrestart
-    ;;
-  status)
-    rhstatus
-    ;;
   check)
     check
     ;;
   *)
-    echo $"Usage: $BASENAME {start|stop|restart|reload|condrestart|status|check}"
+    echo $"Usage: $BASENAME {start|stop|restart|reload|check}"
     exit 1
 esac
  
