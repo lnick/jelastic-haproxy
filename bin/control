@@ -53,11 +53,11 @@ start() {
 
 stop() {
   echo -n "Shutting down $BASENAME: "
-  killproc $BASENAME -USR1
+  killproc ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/$BASENAME -USR1
   RETVAL=$?
   echo
-  [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$BASENAME
-  [ $RETVAL -eq 0 ] && rm -f /var/run/$BASENAME.pid
+  #[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$BASENAME
+  [ $RETVAL -eq 0 ] && rm -f ${OPENSHIFT_HAPROXY_DIR}/run/$BASENAME.pid
   return $RETVAL
 }
 
