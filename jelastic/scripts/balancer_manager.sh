@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function setNeighbors(){
+function _setNeighbors(){
 return 0;
 }
 
