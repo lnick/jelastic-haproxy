@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 function _setNeighbors(){
 return 0;
