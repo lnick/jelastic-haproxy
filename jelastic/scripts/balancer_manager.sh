@@ -5,21 +5,23 @@ function _set_neighbors(){
 }
 
 function _rebuild_common(){
-    sed -i '/balance roundrobin/,$d' ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf;
-    cat ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf ${OPENSHIFT_HAPROXY_DIR}/hosts > ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf.tmp;
-    cp ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf.tmp ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf;
-    sed '/backend app/a balance roundrobin' ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf;
-    [-f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf.tmp] && rm -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf.tmp;
-    ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf;
+    sed -i '/roundrobin$/,$d' ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
+    cat ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts > ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp;
+    cp ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
+    sed '/backend app/a balance roundrobin' ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
+    [ -f ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp ] && rm -f ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp;
+    ${CARTRIDGE_HOME}/versions/1.5.3/bin/haproxy -D -f ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
 
 }
 
-function _add_common_host(){    
-    touch ${OPENSHIFT_HAPROXY_DIR}/hosts;
-    count=$(cat /opt/repo/hosts | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
+function _add_common_host(){
+    touch ${CARTRIDGE_HOME}/hosts;
+    count=$(cat ${CARTRIDGE_HOME}/hosts | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
     let "count+=1";
-    echo "server webserver${count} ${host}:80" >> ${OPENSHIFT_HAPROXY_DIR}/hosts;
+    grep -q "${host}:80" ${CARTRIDGE_HOME}/hosts  || echo "server webserver${count} ${host}:80" >> ${CARTRIDGE_HOME}/hosts;
+    return 0;
 }
+
 
 
 function _remove_common_host(){
