@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 /usr/sbin/setcap cap_net_bind_service=+ep /opt/repo/versions/1.5.3/bin/haproxy
 iptables -t nat -D PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8743
