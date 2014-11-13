@@ -10,7 +10,6 @@ function _rebuild_common(){
     cp ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf.tmp ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf;
     sed '/backend app/a balance roundrobin' ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf;
     rm -rf ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf.tmp;
-    rm -rf ${OPENSHIFT_HAPROXY_DIR}/hosts;
     ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf;
 
 }
