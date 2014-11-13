@@ -25,7 +25,7 @@ function _add_common_host(){
 
 
 function _remove_common_host(){
-    sed -i '/'${host}':80/d' ${OPENSHIFT_HAPROXY_DIR}/hosts;
+    sed -i '/'${host}':80/d' ${CARTRIDGE_HOME}/hosts;
 }
 
 
