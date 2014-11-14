@@ -36,6 +36,8 @@ fi
 
 RETVAL=0
 
+sudo /usr/sbin/setcap cap_net_bind_service=+ep /opt/repo/versions/1.5.3/bin/haproxy
+
 start() {
   #setcap 'cap_net_bind_service=+ep' ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy
   ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -c -q -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf
