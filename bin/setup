@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 
-iptables -t nat -D PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8743
-iptables -t nat -D PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080
-/etc/init.d/iptables save
-echo "jelastic ALL=(ALL) NOPASSWD: /usr/sbin/setcap" >> /etc/sudoers
+#iptables -t nat -D PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8743
+#iptables -t nat -D PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080
+#/etc/init.d/iptables save
+#echo "jelastic ALL=(ALL) NOPASSWD: /usr/sbin/setcap" >> /etc/sudoers
 
