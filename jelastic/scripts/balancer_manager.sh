@@ -10,7 +10,7 @@ function _rebuild_common(){
     cp ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
     sed -i '/backend app/a balance roundrobin' ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
     [ -f ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp ] && rm -f ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp;
-    ${CARTRIDGE_HOME}/versions/1.5.3/bin/haproxy -D -f ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf -p ${CARTRIDGE_HOME}/run/haproxy.pid -sf $(cat ${CARTRIDGE_HOME}/run/haproxy.pid)
+    su - jelastic -c "${CARTRIDGE_HOME}/versions/1.5.3/bin/haproxy -D -f ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf -p ${CARTRIDGE_HOME}/run/haproxy.pid -sf $(cat ${CARTRIDGE_HOME}/run/haproxy.pid)"
 }
 
 function _add_common_host(){
