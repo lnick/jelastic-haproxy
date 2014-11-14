@@ -39,7 +39,6 @@ RETVAL=0
 sudo /usr/sbin/setcap cap_net_bind_service=+ep /opt/repo/versions/1.5.3/bin/haproxy
 
 start() {
-  #setcap 'cap_net_bind_service=+ep' ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy
   ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -c -q -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf
   if [ $? -ne 0 ]; then
     echo "Errors found in configuration file, check it with '$BASENAME check'."
@@ -50,7 +49,7 @@ start() {
   daemon ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf -p /opt/repo/run/$BASENAME.pid
   RETVAL=$?
   echo
-  #[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$BASENAME
+  [ $RETVAL -eq 0 ] && touch /opt/repo/lock/subsys/$BASENAME
   return $RETVAL
 }
 
@@ -59,7 +58,7 @@ stop() {
   killproc ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/$BASENAME -USR1
   RETVAL=$?
   echo
-  #[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$BASENAME
+  [ $RETVAL -eq 0 ] && rm -f /opt/repo/var/lock/subsys/$BASENAME
   [ $RETVAL -eq 0 ] && rm -f ${OPENSHIFT_HAPROXY_DIR}/run/$BASENAME.pid
   return $RETVAL
 }
