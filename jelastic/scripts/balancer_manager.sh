@@ -5,7 +5,7 @@ function _set_neighbors(){
 }
 
 function _rebuild_common(){
-    sed -i '/balance$/,$d' ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
+    sed -i '/###LIST OF ENVIRONMENT APPSERVER NODES###$/,$d' ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
     cat ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts > ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp;
     cp ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
     sed -i '/backend app/a balance roundrobin' ${CARTRIDGE_HOME}/versions/1.5.3/conf/haproxy.conf;
