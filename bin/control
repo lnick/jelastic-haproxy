@@ -81,7 +81,7 @@ reload() {
     echo "Errors found in configuration file, check it with '$BASENAME check'."
     return 1
   fi
-  ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf 
+  ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf -p ${OPENSHIFT_HAPROXY_DIR}/run/haproxy.pid -sf $(cat ${OPENSHIFT_HAPROXY_DIR}/run/haproxy.pid)
 }
 
 check() {
