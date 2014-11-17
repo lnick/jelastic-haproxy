@@ -40,4 +40,10 @@ Endpoints:
   - Private-IP-Name:   APP_HOST
     Private-Port-Name: APP_PORT
     Private-Port:      8080
+  - Private-IP-Name:   APP_HOST_HTTP
+    Private-Port-Name: APP_PORT_HTTP
+    Private-Port:      80   
+  - Private-IP-Name:   APP_HOST_HTTPS
+    Private-Port-Name: APP_PORT_HTTPS
+    Private-Port:      443
     Public-Port-Name:  APP_PROXY_PORT
