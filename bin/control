@@ -58,7 +58,7 @@ stop() {
   killproc ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/$BASENAME -USR1
   RETVAL=$?
   echo
-  [ $RETVAL -eq 0 ] && rm -f /opt/repo/var/lock/subsys/$BASENAME
+  [ $RETVAL -eq 0 ] && rm -f ${OPENSHIFT_HAPROXY_DIR}/lock/subsys/$BASENAME
   [ $RETVAL -eq 0 ] && rm -f ${OPENSHIFT_HAPROXY_DIR}/run/$BASENAME.pid
   return $RETVAL
 }
