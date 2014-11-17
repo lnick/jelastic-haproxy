@@ -88,13 +88,13 @@ check() {
   ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -c -q -V -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf
 }
 
-#status() {
-#  status $BASENAME
-#}
+status() {
+  status $BASENAME
+}
  
-#condrestart() {
-#  [ -e /var/lock/subsys/$BASENAME ] && restart || :
-#}
+condrestart() {
+  [ -e /var/lock/subsys/$BASENAME ] && restart || :
+}
 
 
 
@@ -112,12 +112,12 @@ case "$1" in
   reload)
     reload
     ;;
-#  condrestart)
-#    condrestart
-#    ;;
-#  status)
-#    status
-#    ;;
+  condrestart)
+    condrestart
+    ;;
+  status)
+    status
+    ;;
   check)
     check
     ;;
