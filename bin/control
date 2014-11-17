@@ -36,7 +36,7 @@ fi
 
 RETVAL=0
 
-sudo /usr/sbin/setcap cap_net_bind_service=+ep /opt/repo/versions/1.5.3/bin/haproxy
+sudo ${OPENSHIFT_HAPROXY_DIR}/setcap cap_net_bind_service=+ep ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy
 
 start() {
   ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -c -q -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf
@@ -45,10 +45,11 @@ start() {
     return 1
   fi
   if [ -f ${OPENSHIFT_HAPROXY_DIR}/lock/subsys/$BASENAME ]; then
+  echo "Service already running"
   return 1
   fi
   echo -n "Starting $BASENAME: "
-  daemon ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf -p /opt/repo/run/$BASENAME.pid
+  daemon ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf -p ${OPENSHIFT_HAPROXY_DIR}/run/$BASENAME.pid
   RETVAL=$?
   echo
   [ $RETVAL -eq 0 ] && touch ${OPENSHIFT_HAPROXY_DIR}/lock/subsys/$BASENAME
@@ -76,7 +77,7 @@ restart() {
 }
 
 reload() {
-  ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -c -q -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf #-p /var/run/$BASENAME.pid -sf $(cat /var/run/$BASENAME.pid)
+  ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -c -q -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf -p ${OPENSHIFT_HAPROXY_DIR}/run/haproxy.pid -sf $(cat ${OPENSHIFT_HAPROXY_DIR}/run/haproxy.pid)
   if [ $? -ne 0 ]; then
     echo "Errors found in configuration file, check it with '$BASENAME check'."
     return 1
@@ -89,11 +90,15 @@ check() {
 }
 
 status() {
-  status $BASENAME
+  if [ -f ${OPENSHIFT_HAPROXY_DIR}/run/$BASENAME ]; then
+  echo "Service is running"
+  else
+  	echo "Service is not running"
+  fi
 }
  
 condrestart() {
-  [ -e /var/lock/subsys/$BASENAME ] && restart || :
+  [ -e ${OPENSHIFT_HAPROXY_DIR}/lock/subsys/$BASENAME ] && restart || :
 }
 
 
