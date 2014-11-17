@@ -6,7 +6,7 @@ Version: '1.5.3'
 License: 'Apache licence'
 License-Url: 
 Vendor: Eclipse
-Cartridge-Version: 1.5.3
+Cartridge-Version: 1.5.8
 Cartridge-Vendor: Jelastic
 Categories:
   - service
