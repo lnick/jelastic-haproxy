@@ -1,5 +1,5 @@
 #!/bin/bash
 
 function _setPassword() {
-  return 0;
+  sed 's/stats auth/stats auth 'J_OPENSHIFT_APP_ADM_USER':'J_OPENSHIFT_APP_ADM_PASSWORD' /g' ;
 }
