@@ -46,8 +46,6 @@ start() {
   fi
 
   echo -n "Starting $BASENAME: "
-  if [ -f ${OPENSHIFT_HAPROXY_DIR}/lock/subsys/$BASENAME ]; then
-  return 1;
   daemon ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/bin/haproxy -D -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.3/conf/haproxy.conf -p /opt/repo/run/$BASENAME.pid
   RETVAL=$?
   echo
