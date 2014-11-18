@@ -14,10 +14,7 @@ function _rebuild_common(){
     cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts_https > ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
     cp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
     [ -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ] && rm -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
-    #cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts > ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
-    #cp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
     sed -i '/###BACKEND SECTIONS###/a ###HTTP AND HTTPS SECTIONS ARE LISTED BELOW###' ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
-    #[ -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ] && rm -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
     su - jelastic -c "${CARTRIDGE_HOME}/versions/1.5.8/bin/haproxy -D -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf -p ${CARTRIDGE_HOME}/run/haproxy.pid -sf $(cat ${CARTRIDGE_HOME}/run/haproxy.pid)"
 }
 
