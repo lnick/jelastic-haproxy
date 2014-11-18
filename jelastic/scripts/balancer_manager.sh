@@ -6,11 +6,11 @@ function _set_neighbors(){
 
 function _rebuild_common(){
     sed -i '/###HTTP AND HTTPS SECTIONS ARE LISTED BELOW###$/,$d' ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
-    echo $'backend bk_http\nmode http\nbalance roundrobin' >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
+    echo $'\nbackend bk_http\nmode http\nbalance roundrobin' >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
     cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts_http > ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
     cp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
     [ -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ] && rm -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
-    echo $'backend bk_https\nmode tcp\nbalance roundrobin' >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
+    echo $'\nbackend bk_https\nmode tcp\nbalance roundrobin' >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
     cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts_https > ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
     cp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
     [ -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ] && rm -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
