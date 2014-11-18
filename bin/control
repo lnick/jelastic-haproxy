@@ -39,7 +39,6 @@ RETVAL=0
 sudo /usr/sbin/setcap cap_net_bind_service=+ep ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.8/bin/haproxy
 
 start() {
-  return 0;
   ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.8/bin/haproxy -c -q -f ${OPENSHIFT_HAPROXY_DIR}/versions/1.5.8/conf/haproxy.conf
   if [ $? -ne 0 ]; then
     echo "Errors found in configuration file, check it with '$BASENAME check'."
