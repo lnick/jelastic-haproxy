@@ -28,7 +28,7 @@ function _add_common_host(){
     let "count+=1";
     grep -q "${host}:80" ${CARTRIDGE_HOME}/hosts_http  || echo "server webserver${count} ${host}:80" >> ${CARTRIDGE_HOME}/hosts;
     return 0;
-    grep -q "${host}:443" ${CARTRIDGE_HOME}/hosts_https  || echo "server webserver${count} ${host}:80" >> ${CARTRIDGE_HOME}/hosts;
+    grep -q "${host}:80" ${CARTRIDGE_HOME}/hosts_https  || echo "server webserver${count} ${host}:443" >> ${CARTRIDGE_HOME}/hosts;
     return 0;
 }
 
