@@ -1,11 +1,13 @@
 #!/bin/bash
 
 function _enableSSL(){
-doAction keystore DownloadKeys;
-return 0;
+        local err;
+        doAction keystore DownloadKeys;
+        err=$?; [[ ${err} -gt 0 ]] && exit ${err};
 }
 
 function _disableSSL(){
-doAction keystore remove;
-return 0;
+        local err;
+        doAction keystore remove;
+        err=$?; [[ ${err} -gt 0 ]] && exit ${err};
 }
