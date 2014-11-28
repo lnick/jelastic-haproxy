@@ -19,11 +19,9 @@ function _rebuild_common(){
 }
 
 function _add_common_host(){
-    touch ${CARTRIDGE_HOME}/hosts_http;
-    count=$(cat ${CARTRIDGE_HOME}/hosts_http | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
+    count=$(cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
     let "count+=1";
-    grep -q "${host}:80" ${CARTRIDGE_HOME}/hosts_http  || echo "server webserver${count} ${host}:80" >> ${CARTRIDGE_HOME}/hosts_http;
-    return 0;
+    echo "server webserver${count} ${host}:80 check" >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
 }
 
 
