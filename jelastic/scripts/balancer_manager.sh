@@ -24,15 +24,13 @@ function _add_common_host(){
     count=$(cat ${CARTRIDGE_HOME}/hosts_http | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
     let "count+=1";
     grep -q "${host}:80" ${CARTRIDGE_HOME}/hosts_http  || echo "server webserver${count} ${host}:80" >> ${CARTRIDGE_HOME}/hosts_http;
-    grep -q "${host}:80" ${CARTRIDGE_HOME}/hosts_https  || echo "server webserver${count} ${host}:443" >> ${CARTRIDGE_HOME}/hosts_https;
     return 0;
 }
 
 
 
 function _remove_common_host(){
-    sed -i '/'${host}':80/d' ${CARTRIDGE_HOME}/hosts_http;
-    sed -i '/'${host}':443/d' ${CARTRIDGE_HOME}/hosts_https;
+    sed -i '/'${host}'/d' ${CARTRIDGE_HOME}/hosts_http;
 }
 
 
