@@ -9,4 +9,5 @@ function _enableSSL(){
 function _disableSSL(){
         doAction keystore remove;
         rm -f /var/lib/jelastic/SSL/jelastic.pem;
+        sed -i '/ssl crt/d' ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
 }
