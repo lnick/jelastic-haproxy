@@ -19,15 +19,15 @@ function _rebuild_common(){
 }
 
 function _add_common_host(){
-    count=$(cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
+    count=$(cat ${CARTRIDGE_HOME}/hosts | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
     let "count+=1";
-    echo "server webserver${count} ${host}:80 check" >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
+    echo "server webserver${count} ${host}:80 check" >> ${CARTRIDGE_HOME}/hosts;
 }
 
 
 
 function _remove_common_host(){
-    sed -i '/'${host}'/d' ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
+    sed -i '/'${host}'/d' ${CARTRIDGE_HOME}/hosts;
 }
 
 
@@ -50,4 +50,3 @@ function _clear_hosts(){
 function _reload_configs(){
     return 0;
 }
-
