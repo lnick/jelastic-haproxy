@@ -49,9 +49,3 @@ Endpoints:
     Private-Port-Name: APP_PORT_HTTPS
     Private-Port:      443
     Public-Port-Name:  APP_PROXY_HTTPS
-    Private-IP-Name:   APP_HOST_ADM_CONSOLE
-    Private-Port-Name: APP_PORT_ADM_CONDOLE
-    Private-Port:      1936
-    Public-Port-Name:  APP_PROXY_ADM_CONSOLE
-    
-    
