@@ -5,11 +5,11 @@ function _set_neighbors(){
 }
 
 function _rebuild_common(){
-    sed -i '/balance$/,$d' ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
+    #sed -i '/balance$/,$d' ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
     #echo $'\nbackend bk_http\nmode http\nbalance roundrobin' >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
-    cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts > ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
-    cp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
-    [ -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ] && rm -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
+    #cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts > ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
+    #cp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
+    #[ -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ] && rm -f ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
     #echo $'\nbackend bk_https\nmode tcp\nbalance roundrobin' >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
     #cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf ${CARTRIDGE_HOME}/hosts_https > ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp;
     #cp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf.tmp ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
@@ -19,15 +19,15 @@ function _rebuild_common(){
 }
 
 function _add_common_host(){
-    count=$(cat ${CARTRIDGE_HOME}/hosts | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
+    count=$(cat ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf | grep -o "webserver[0-9]" | sed 's/webserver//g' | sort | tail -n1);
     let "count+=1";
-    echo "server webserver${count} ${host}:80 check" >> ${CARTRIDGE_HOME}/hosts;
+    echo "server webserver${count} ${host}:80 check" >> ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
 }
 
 
 
 function _remove_common_host(){
-    sed -i '/'${host}'/d' ${CARTRIDGE_HOME}/hosts;
+    sed -i '/'${host}'/d' ${CARTRIDGE_HOME}/versions/1.5.8/conf/haproxy.conf;
 }
 
 
