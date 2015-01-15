@@ -1,0 +1,3 @@
+#!/bin/bash -eu
+
+cp -f /opt/repo/versions/1.5.8/haproxy.conf.default /opt/repo/versions/1.5.8/bin/haproxy.conf
