@@ -48,4 +48,5 @@ default_backend bk_http
 backend bk_http
 
 mode http
+cookie SRVNAME insert
 balance roundrobin
