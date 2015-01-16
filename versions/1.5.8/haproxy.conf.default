@@ -38,7 +38,7 @@ frontend ft_http
 bind :80
 mode http
 stats enable
-stats auth admin:dd92fk1c51
+stats auth admin:password
 stats refresh 30s
 stats show-node
 stats uri  /haproxy_adm_panel
