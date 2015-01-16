@@ -41,7 +41,7 @@ stats enable
 stats auth admin:dd92fk1c51
 stats refresh 30s
 stats show-node
-stats uri  /haproxy
+stats uri  /haproxy_adm_panel
 stats admin if TRUE
 default_backend bk_http
  
