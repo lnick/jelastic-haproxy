@@ -6,7 +6,7 @@ echo "jelastic ALL=(ALL) NOPASSWD: /usr/sbin/setcap" >> /etc/sudoers
 /sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 /sbin/iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 /etc/init.d/iptables save
-echo "#Save HA-Proxy logs" >>/etc/rsyslog.conf
-echo "local0.* -/opt/repo/log/haproxy_0.log" >>/etc/rsyslog.conf
-echo "local1.* -/opt/repo/log/haproxy_1.log" >>/etc/rsyslog.conf
+
+
+
 /etc/init.d/rsyslog restart
